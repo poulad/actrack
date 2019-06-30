@@ -1,0 +1,56 @@
+@page "/features"
+@inject IJSRuntime js
+
+<h1>Browser Feature Checks</h1>
+
+<input type="checkbox" disabled @bind="hasServiceWorker" />
+Service Worker @(hasServiceWorker == null ? "(checking...)" : "")
+<br>
+
+<input type="checkbox" disabled @bind="hasPersistantStorage" />
+Persistant Storage @(hasPersistantStorage == null ? "(checking...)" : "")
+<br>
+
+<input type="checkbox" disabled @bind="hasUsageEstimates" />
+Storage Quota @(hasUsageEstimates == null ? "(checking...)" : "")
+<br>
+
+<input type="checkbox" disabled @bind="hasCacheStorage" />
+Cache Storage @(hasCacheStorage == null ? "(checking...)" : "")
+<br>
+
+
+@code {
+    bool? hasServiceWorker;
+    bool? hasPersistantStorage;
+    bool? hasUsageEstimates;
+    bool? hasCacheStorage;
+
+    protected override async Task OnInitAsync() {
+        await CheckServiceWorkerFeature();
+        await CheckPersistenceFeature();
+        await CheckStorageQuotaFeature();
+        await CheckCacheFeature();
+    }
+
+    async Task CheckServiceWorkerFeature() {
+        hasServiceWorker = await js.InvokeAsync<bool>("eval", "'serviceWorker' in navigator");
+        StateHasChanged();
+    }
+
+    async Task CheckPersistenceFeature() {
+        hasPersistantStorage = await js
+            .InvokeAsync<bool>("eval", "Boolean(navigator.storage && navigator.storage.persist)");
+        StateHasChanged();
+    }
+
+    async Task CheckStorageQuotaFeature() {
+        hasUsageEstimates = await js.InvokeAsync<bool>("eval", "Boolean(navigator.storage.estimate)");
+        StateHasChanged();
+    }
+
+    async Task CheckCacheFeature() {
+        hasCacheStorage = await js.InvokeAsync<bool>("eval", "Boolean(caches && caches.open)");
+        StateHasChanged();
+    }
+}

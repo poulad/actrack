@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29021.104
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Actrack", "Actrack.csproj", "{03E3A8FC-93F4-488D-994A-EA1F56817C7D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03E3A8FC-93F4-488D-994A-EA1F56817C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E3A8FC-93F4-488D-994A-EA1F56817C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E3A8FC-93F4-488D-994A-EA1F56817C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E3A8FC-93F4-488D-994A-EA1F56817C7D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9DC3AB3-B5D4-42E1-8F3F-6F587DF1D050}
+	EndGlobalSection
+EndGlobal
