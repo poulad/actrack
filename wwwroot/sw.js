@@ -40,7 +40,6 @@ const urlsToCache = [
     "css/site.css",
     "index.html",
     "favicon.ico",
-    "",
     "funcs.js",
     "sw.js",
     "manifest.json"
@@ -49,21 +48,21 @@ const urlsToCache = [
 self.addEventListener("install", event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then(cache => {
-                return cache.addAll(urlsToCache);
-            })
+        .then(cache => {
+            return cache.addAll(urlsToCache);
+        })
     );
 });
 
 self.addEventListener("fetch", event => {
     event.respondWith(
         caches.match(event.request)
-            .then(response => {
-                if (response) {
-                    return response;
-                }
-                console.log("NOT CACHED:", event.request);
-                return fetch(event.request);
-            })
+        .then(response => {
+            if (response) {
+                return response;
+            }
+            console.log("NOT CACHED:", event.request);
+            return fetch(event.request);
+        })
     );
 });

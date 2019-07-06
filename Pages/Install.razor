@@ -9,11 +9,11 @@
 }
 
 @if (appState.Installation?.HasActiveServiceWorker == true) {
-    <h3>App is already installed.</h3>
+  <h3>App is already installed.</h3>
 } else if (appState.Installation?.HasActiveServiceWorker == false) {
-    <button type="button" class="btn btn-success" @onclick="@AskPersistencePermission">Install App</button>
+  <button type="button" class="btn btn-success" @onclick="@AskPersistencePermission">Install App</button>
 } else {
-    <p><i>Checking...</i></p>
+  <p><i>Checking...</i></p>
 }
 
 @code {
@@ -55,10 +55,13 @@
             error = "Failed to check for persistence storage grant. " + errorJson;
             return;
         }
-        
-        RegisterServiceWorker();
-    }
 
+        if (isGranted) {
+            RegisterServiceWorker();
+        } else {
+            error = "Persistance permission was not granted.";
+        }
+    }
     
     async Task ConfigureInstallationPrompt() {
         bool isPromptConfigured = await js.InvokeAsync<bool>(
