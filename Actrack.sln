@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29021.104
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6F4337B0-49D0-4DC4-8F4F-79D1DBAE63D1}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Actrack", "src\Actrack\Actrack.csproj", "{03E3A8FC-93F4-488D-994A-EA1F56817C7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actrack.Data", "src\Actrack.Data\Actrack.Data.csproj", "{20304B81-D363-4CB9-B4F5-0154B8D96490}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EACA6FFF-2681-4508-B2CE-D18DB4A45215}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actrack.Data.UnitTests", "test\Actrack.Data.UnitTests\Actrack.Data.UnitTests.csproj", "{1B020913-831E-45C4-BA27-4BE0AFA062CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,11 +23,24 @@ Global
 		{03E3A8FC-93F4-488D-994A-EA1F56817C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03E3A8FC-93F4-488D-994A-EA1F56817C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03E3A8FC-93F4-488D-994A-EA1F56817C7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20304B81-D363-4CB9-B4F5-0154B8D96490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20304B81-D363-4CB9-B4F5-0154B8D96490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20304B81-D363-4CB9-B4F5-0154B8D96490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20304B81-D363-4CB9-B4F5-0154B8D96490}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B020913-831E-45C4-BA27-4BE0AFA062CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B020913-831E-45C4-BA27-4BE0AFA062CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B020913-831E-45C4-BA27-4BE0AFA062CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B020913-831E-45C4-BA27-4BE0AFA062CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D9DC3AB3-B5D4-42E1-8F3F-6F587DF1D050}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{03E3A8FC-93F4-488D-994A-EA1F56817C7D} = {6F4337B0-49D0-4DC4-8F4F-79D1DBAE63D1}
+		{20304B81-D363-4CB9-B4F5-0154B8D96490} = {6F4337B0-49D0-4DC4-8F4F-79D1DBAE63D1}
+		{1B020913-831E-45C4-BA27-4BE0AFA062CA} = {EACA6FFF-2681-4508-B2CE-D18DB4A45215}
 	EndGlobalSection
 EndGlobal

@@ -1,3 +1,4 @@
+using Actrack.Data;
 using Actrack.Models;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Builder;
@@ -11,6 +12,7 @@ namespace Actrack
         {
             services.AddSingleton<AppState>();
             services.AddBlazoredLocalStorage();
+            services.AddScoped<IActivityReader, CsvReader>();
         }
 
         public void Configure(IComponentsApplicationBuilder app)

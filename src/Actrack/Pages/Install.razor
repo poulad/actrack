@@ -4,36 +4,48 @@
 
 <h1>Install Application</h1>
 
-@if (error != null) {
+@if (error != null)
+{
     <div class="alert alert-danger" role="alert">@error</div>
 }
 
-@if (appState.Installation?.HasActiveServiceWorker == true) {
-  <h3>App is already installed.</h3>
-} else if (appState.Installation?.HasActiveServiceWorker == false) {
-  <button type="button" class="btn btn-success" @onclick="@AskPersistencePermission">Install App</button>
-} else {
-  <p><i>Checking...</i></p>
+@if (appState.Installation?.HasActiveServiceWorker == true)
+{
+    <h3>App is already installed.</h3>
+}
+else if (appState.Installation?.HasActiveServiceWorker == false)
+{
+    <button type="button" class="btn btn-success" @onclick="@AskPersistencePermission">Install App</button>
+}
+else
+{
+    <p>
+        <i>Checking...</i>
+    </p>
 }
 
 @code {
     string error;
 
-    protected override Task OnInitAsync() {
+    protected override Task OnInitAsync()
+    {
         error = null;
         return ConfigureInstallationPrompt();
     }
 
-    public async void RegisterServiceWorker() {
+    public async void RegisterServiceWorker()
+    {
         await js.InvokeAsync<object>(
             "actrack.sw.register",
             "sw.js", DotNetObjectRef.Create(this), nameof(RegisterServiceWorkerCallback)
-        );
+            );
     }
 
     [JSInvokable]
-    public void RegisterServiceWorkerCallback(string errorJson, string registration) {
-        if (errorJson != null) {
+    public void RegisterServiceWorkerCallback(string errorJson, string registration)
+    {
+        if (errorJson != null)
+        {
             error = "Failed to check for persistence storage grant. " + errorJson;
             return;
         }
@@ -41,45 +53,55 @@
         Console.WriteLine($"Registered! {registration}");
     }
 
-    async void AskPersistencePermission() {
+    async void AskPersistencePermission()
+    {
         await js.InvokeAsync<object>(
             "actrack.storage.askForPersistencePermission",
             DotNetObjectRef.Create(this),
             nameof(AskPersistencePermissionCallback)
-        );
+            );
     }
 
     [JSInvokable]
-    public void AskPersistencePermissionCallback(string errorJson, bool isGranted) {
-        if (errorJson != null) {
+    public void AskPersistencePermissionCallback(string errorJson, bool isGranted)
+    {
+        if (errorJson != null)
+        {
             error = "Failed to check for persistence storage grant. " + errorJson;
             return;
         }
 
-        if (isGranted) {
+        if (isGranted)
+        {
             RegisterServiceWorker();
-        } else {
-            error = "Persistance permission was not granted.";
+        }
+        else
+        {
+            error = "Persistence permission was not granted.";
         }
     }
-    
-    async Task ConfigureInstallationPrompt() {
+
+    async Task ConfigureInstallationPrompt()
+    {
         bool isPromptConfigured = await js.InvokeAsync<bool>(
             "eval",
             "Boolean(actrack && actrack.installation && actrack.installation.isPromptConfigured)"
-        );
-        if (!isPromptConfigured) {
+            );
+        if (!isPromptConfigured)
+        {
             await js.InvokeAsync<object>(
                 "actrack.installation.configurePrompt",
                 DotNetObjectRef.Create(this),
                 nameof(ConfigureInstallationPromptCallback)
-            );
+                );
         }
     }
 
     [JSInvokable]
-    public Task ConfigureInstallationPromptCallback(string errorJson) {
+    public Task ConfigureInstallationPromptCallback(string errorJson)
+    {
         Console.WriteLine("Got the prompt!");
         return Task.CompletedTask;
     }
+
 }

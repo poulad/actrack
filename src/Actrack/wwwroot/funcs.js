@@ -38,6 +38,14 @@ window.actrack.storage = {
     navigator.storage.persisted()
       .then(isGranted => invokeDotNetInstanceMethod(dotnetObjRef, callback, null, isGranted))
       .catch(err => invokeDotNetInstanceMethod(dotnetObjRef, callback, err));
+  },
+
+  readFile: (inputEl, dotnetObjRef, callback) => {
+    const reader = new FileReader()
+    reader.addEventListener('load', e => invokeDotNetInstanceMethod(dotnetObjRef, callback, null, e.type, reader.result.toString()))
+    reader.addEventListener('progress', e => invokeDotNetInstanceMethod(dotnetObjRef, callback, null, e.type, JSON.stringify(e)))
+    reader.addEventListener('error', e => invokeDotNetInstanceMethod(dotnetObjRef, callback, JSON.stringify(reader.error)))
+    reader.readAsText(inputEl.files[0])
   }
 }
 
