@@ -1,3 +1,3 @@
 # Actrack
 
-My personal activty tracker
+My personal activity tracker
