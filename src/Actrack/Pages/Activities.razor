@@ -15,9 +15,25 @@
   </div>
 </form>
 
+<ul class="list-group list-group-flush">
+  @foreach (var ac in activities) {
+    <li class="list-group-item">
+      <ActivityCard Activity="ac" />
+    </li>
+  }
+</ul>
+
 @code {
   ElementRef fileInput;
   string error;
+  Activity[] activities = new [] {
+    new Activity {
+      Title = "Running",
+      Category = "Workout",
+      Duration = TimeSpan.FromMinutes(30),
+    },
+    new Activity { Title = "Biking" },
+  };
 
   public async Task ReadFile() {
     await js.InvokeAsync<object>("actrack.storage.readFile",

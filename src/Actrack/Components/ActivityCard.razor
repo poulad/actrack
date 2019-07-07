@@ -1,0 +1,20 @@
+@if (Activity.Category != null) {
+  <span aria-hidden="true" data-toggle="tooltip" data-placement="top"
+    class="@iconClass" title="@(Activity.Category) category"></span>
+}
+@Activity.Title
+
+@code {
+  [Parameter]
+  public Activity Activity { get; set; }
+
+  string iconClass {
+    get {
+      string clazz = "oi oi-";
+      if (Activity.Category == "Workout") {
+        clazz += "timer";
+      }
+      return clazz;
+    }
+  }
+}

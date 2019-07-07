@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Actrack.Data
 {
@@ -12,5 +13,6 @@ namespace Actrack.Data
         public DateTime? End { get; set; }
         public TimeSpan? Duration { get; set; }
         public DateTime? RecordedAt { get; set; }
+        public ICollection<string> Labels { get; set; }
     }
 }
